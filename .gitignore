@@ -1,0 +1,11 @@
+node_modules/
+shots/
+.playwright-mcp/
+docs/
+game_desinger_v2/
+*.log
+*.heapsnapshot
+Thumbs.db
+.DS_Store
+*.png
+!port.png

@@ -1,0 +1,29 @@
+{
+  "name": "aquaring",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AQUARING // MAREA VIVA: arcade de pesca de anillos en un acuario retro, un solo HTML autocontenido (<=32 KB) con canvas 2D procedural y musica chiptune por Web Audio. Sin assets externos.",
+  "keywords": [
+    "arcade",
+    "aquarium",
+    "ring-toss",
+    "canvas",
+    "chiptune",
+    "single-file",
+    "game"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wiliam-L/game32k.git"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "size": "node tools/build.mjs --check",
+    "smoke": "node tools/smoke.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "terser": "^5.51.2"
+  }
+}

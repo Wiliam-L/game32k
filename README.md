@@ -6,6 +6,8 @@ sin assets externos ni peticiones de red en runtime.
 
 ![Partida](port.png)
 
+**Juega en el navegador: [https://wiliam-l.github.io/game32k/](https://wiliam-l.github.io/game32k/)**
+
 ## Concepto y cómo se juega
 
 Inclinas el marco completo (marco, HUD y agua giran como una pieza) para que los anillos
@@ -74,7 +76,8 @@ npm run size      # solo verifica el tamaño del index.html actual
 
 El build imprime el total y la línea `meta 32 000 B ok` (objetivo informativo; el tope
 duro acordado es 32 400 B y la rebanada física 32 768 B). Para jugar, abre `index.html`
-en el navegador; no hace falta servidor.
+en el navegador (no hace falta servidor) o juega en línea en
+https://wiliam-l.github.io/game32k/.
 
 ## Verificar
 

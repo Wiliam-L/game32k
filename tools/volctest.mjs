@@ -132,18 +132,20 @@ else {
     else console.log('cangrejo asustado por el impulso: ok');
   }
 }
-// --- (c) oleada 2 en DIFICIL: los volcanes vuelven a ser decorativos ---
-AQ.sw(2);
-for (let i = 0; i < 3; i++) frame();
-const j2 = AQ.jp();
-AQ.rt(vp[0] + 70, vp[1] - 70);
-key('keydown', 'A', 'KeyA');
-for (let i = 0; i < 12; i++) frame(); // mantener cargado: no debe gastar ni lanzar
-key('keyup', 'A', 'KeyA');
-for (let i = 0; i < 3; i++) frame();
-const j3 = AQ.jp(), rg2 = AQ.rg();
-console.log('oleada 2: jets antes/después de mantener A:', j2, '→', j3, '| vy:', rg2 && rg2[3]);
-if (j3 !== j2 || !rg2 || rg2[3] < -200) { bad++; console.log('MAL: los volcanes siguen activos en oleada 2'); }
-else console.log('volcanes decorativos en oleada 2 DIFICIL: ok');
+// --- (c) oleadas 2 y 5: los impulsos siguen activos en TODAS las oleadas ---
+for (const wv of [2, 5]) {
+  AQ.sw(wv);
+  for (let i = 0; i < 3; i++) frame();
+  const ja = AQ.jp();
+  AQ.rt(vp[0] + 70, vp[1] - 70);
+  key('keydown', 'A', 'KeyA');
+  for (let i = 0; i < 12; i++) frame(); // carga corta
+  key('keyup', 'A', 'KeyA');
+  for (let i = 0; i < 4; i++) frame();
+  const jb = AQ.jp(), rg2 = AQ.rg();
+  console.log('oleada ' + wv + ': jets antes/después de pulsar A:', ja, '→', jb, '| vy:', rg2 && rg2[3].toFixed(1));
+  if (ja !== 3 || jb !== 2 || !rg2 || !(rg2[3] < -200)) { bad++; console.log('MAL: impulso inactivo en oleada ' + wv); }
+  else console.log('impulso activo en oleada ' + wv + ' (' + (esHard ? 'DIFICIL' : 'FÁCIL') + '): ok');
+}
 console.log(bad ? '>>> VOLCTEST FALLÓ' : '>>> VOLCTEST OK');
 process.exitCode = bad ? 1 : 0;

@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
 
 const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-if (!html.includes('PUNTOS|SCORE')) throw new Error('index.html no es nuestro build');
+if (!html.includes('PUNTOS|OLEADA')) throw new Error('index.html no es nuestro build');
 const code = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 
 let texts = [];
@@ -90,7 +90,7 @@ for (let i = 0; i < 10; i++) frame();
 if (texts.length > nHelp && texts.slice(nHelp).some(t => /CONTROLES/.test(t)))
   throw new Error('la ventana de controles no se cerró');
 
-// A/D: los volcanes vuelven a lanzar anillos (solo oleada 1 FÁCIL)
+// A/D: los volcanes lanzan anillos en todas las oleadas, ambas dificultades
 const [lx, ly] = AQ.q.vp(0), [rx2, ry2] = AQ.q.vp(1);
 if (!AQ.rt(lx + 70, ly - 70)) throw new Error('no hay anillos libres para probar los volcanes');
 const j0 = AQ.jp();
@@ -140,14 +140,15 @@ if (texts.length > tx && texts.slice(tx).some(t => /CONTROLES/.test(t)))
   throw new Error('la ventana de controles no debe reabrirse en oleada 2');
 console.log('oleada 2: pilares', AQ.xs(), '| volcanes', AQ.q.v.length, '| sin reapertura de controles');
 
-// en oleada 2 los volcanes ya no tienen impulsos
+// en oleadas 2+ los impulsos siguen activos (todas las oleadas, ambas dificultades)
 const jw = AQ.jp();
+if (!AQ.rt(lx + 70, ly - 70)) throw new Error('no hay anillos libres para probar el impulso en oleada 2');
 key('keydown', 'a', 'KeyA');
 for (let i = 0; i < 12; i++) frame();
 key('keyup', 'a', 'KeyA');
-for (let i = 0; i < 2; i++) frame();
-if (AQ.jp() !== jw) throw new Error('los volcanes siguen activos fuera de la oleada 1');
-console.log('oleada 2: volcanes inactivos ok (impulsos', jw + ')');
+for (let i = 0; i < 4; i++) frame();
+if (AQ.jp() !== jw - 1) throw new Error('los volcanes no gastaron un impulso en oleada 2');
+console.log('oleada 2: volcán activo ok (impulsos', jw, '->', AQ.jp() + ')');
 
 // W/S/E/F ya no hacen nada
 const n0 = AQ.n(), p0 = AQ.xs();

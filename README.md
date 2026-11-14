@@ -15,7 +15,7 @@ combo de 8) ambas testas cargan su protector eléctrico completo: 6 luces por to
 FÁCIL y en DIFICIL.
 
 - **Menú**: `A`/`←` = FÁCIL (por defecto), `D`/`→` = DIFICIL; `Space`/`Enter`/toque empieza.
-- **Partida**: `←`/`→` inclinan; `A`/`D` erupcionan los volcanes (solo oleada 1, mantén para
+- **Partida**: `←`/`→` inclinan; `A`/`D` erupcionan los volcanes (todas las oleadas, mantén para
   cargar y suelta); `P`/`Esc` pausa; `M` silencia; `R` reinicia al terminar.
 - **Reglas clave**: las bombas no cuentan para completar la oleada y explotan a los 2,4 s
   (−3 s, expulsan anillos, reinician combo); los dorados valen 500; el temporizador es por

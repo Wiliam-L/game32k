@@ -60,7 +60,7 @@ const aq = (page, expr) => page.evaluate('window.__AQ.' + expr);
     : fail('el marco no rota como una pieza (marco="' + tf.marco + '", lienzo="' + tf.lienzo + '")');
   await page.screenshot({ path: path.join(shotsDir, 'realtime-1-playing.png') });
 
-  // --- A/D: los volcanes vuelven a lanzar anillos (oleada 1 FÁCIL) ---
+  // --- A/D: los volcanes lanzan anillos (todas las oleadas, ambas dificultades) ---
   const vpL = await aq(page, 'q.vp(0)'), vpR = await aq(page, 'q.vp(1)');
   const j0 = await aq(page, 'jp()');
   await aq(page, 'rt(' + vpL[0] + ',' + (vpL[1] - 70) + ')');

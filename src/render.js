@@ -407,14 +407,12 @@ function drawHUD() {
   fr(2, hy + 50, L.W - 4, 6, 3, '#0b2634');
   fr(2, hy + 50, (L.W - 4) * frac, 6, 3, biting && S(G.t * 16) > 0 ? '#ff9db4' : frac < .22 ? cC : cB);
   if (G.combo > 1) txt('x' + G.mult, L.W - 14, hy + 80, 24, cA, 'right');
-  // impulsos de los volcanes (solo oleada 1, ambas dificultades): A izquierda, D derecha
-  if (G.wave < 2) {
-    txt(tr(27), 14, hy + 70, 9, cD, 'left');
-    for (let i = 0; i < 3; i++) {
-      const on = i < G.jets;
-      d(20 + i * 18, hy + 84, 6, on ? cA : '#123c4c');
-      if (on) d(20 + i * 18, hy + 84, 3, '#fff2c0');
-    }
+  // impulsos de los volcanes (todas las oleadas, ambas dificultades): A izquierda, D derecha
+  txt(tr(27), 14, hy + 70, 9, cD, 'left');
+  for (let i = 0; i < 3; i++) {
+    const on = i < G.jets;
+    d(20 + i * 18, hy + 84, 6, on ? cA : '#123c4c');
+    if (on) d(20 + i * 18, hy + 84, 3, '#fff2c0');
   }
   if (G.warn > 0) {
     X.strokeStyle = 'rgba(255,60,90,' + (.3 + S(G.t * 22) * .16) + ')';
@@ -532,7 +530,7 @@ function drawHelp(paused) {
     txt(label, x + 4, y + 1, 12, cD, 'left');
   };
   row(cy - 36, ['←', '→'], tr(19));
-  if (G.wave < 2) row(cy - 74, ['A', 'D'], tr(27));
+  row(cy - 74, ['A', 'D'], tr(27));
   row(cy + 2, ['P'], 'P/ESC ' + tr(12));
   row(cy + 40, ['M'], tr(13));
   txt(paused ? tr(4) : tr(11), cx, cy + h / 2 - 18, 10, '#7fc4cc');

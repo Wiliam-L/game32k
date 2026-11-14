@@ -339,14 +339,13 @@ export function update(dt) {
   G.tiltT = tt;
   G.tilt += (G.tiltT - G.tilt) * MN(1, dt * 7);
 
-  if (G.wave < 2) {
-    if (keys.KeyA && G.jets) G.chargeL = MN(1, G.chargeL + dt / .75);
-    else if (G.chargeL > 0) { erupt(0, G.chargeL); G.chargeL = 0; }
-    if (keys.KeyD && G.jets) G.chargeR = MN(1, G.chargeR + dt / .75);
-    else if (G.chargeR > 0) { erupt(1, G.chargeR); G.chargeR = 0; }
-    G.jetT += dt;
-    if (G.jetT > 1.7) { G.jetT = 0; if (G.jets < 3) G.jets++; }
-  }
+  // impulsos A/D: activos en todas las oleadas y dificultades
+  if (keys.KeyA && G.jets) G.chargeL = MN(1, G.chargeL + dt / .75);
+  else if (G.chargeL > 0) { erupt(0, G.chargeL); G.chargeL = 0; }
+  if (keys.KeyD && G.jets) G.chargeR = MN(1, G.chargeR + dt / .75);
+  else if (G.chargeR > 0) { erupt(1, G.chargeR); G.chargeR = 0; }
+  G.jetT += dt;
+  if (G.jetT > 1.7) { G.jetT = 0; if (G.jets < 3) G.jets++; }
 
   if (G.waveDelay <= 0) {
     if (G.warn > 0) {
